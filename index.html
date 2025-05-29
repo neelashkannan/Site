@@ -53,6 +53,7 @@
         }
         
         /* Ensure these specific images are never grayscale under any circumstances */
+        /*
         .force-color,
         .force-color *,
         .tab-image.force-color,
@@ -82,13 +83,16 @@
         }
         
         /* Create a separate stacking context for the entire services section */
+        /*
         #print-services {
             isolation: isolate !important;
             position: relative !important;
             z-index: 200 !important;
         }
+        */
     </style>
     <!-- Script to force colored images -->
+    <!--
     <script>
         // This script runs as soon as possible to ensure images are displayed in color
         document.addEventListener('DOMContentLoaded', function() {
@@ -127,6 +131,7 @@
             }
         });
     </script>
+    -->
 </head>
 <body>
     <header>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Node.js Server Test</h1>
+    <p>This page tests if the Node.js server is working correctly.</p>
+
+    <button id="test-button">Test Server</button>
+    <div id="result" style="margin-top: 20px;"></div>
+
+    <script>
+        document.getElementById('test-button').addEventListener('click', async function() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Testing server connection...</p>';
+            
+            try {
+                const response = await fetch('http://localhost:3000/submit-quote-request', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: 'Test User',
+                        email: 'test@example.com',
+                        message: 'This is a test message'
+                    })
+                });
+                
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    const textResponse = await response.text();
+                    resultDiv.innerHTML = `
+                        <p style="color: orange;">Server returned non-JSON response:</p>
+                        <pre>${textResponse}</pre>
+                    `;
+                } else {
+                    const result = await response.json();
+                    resultDiv.innerHTML = `
+                        <p style="color: green;">Server responded with JSON:</p>
+                        <pre>${JSON.stringify(result, null, 2)}</pre>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <p style="color: red;">Error: ${error.message}</p>
+                    <p>Make sure the server is running on port 3000</p>
+                `;
+            }
+        });
+    </script>
+</body>
+</html> 

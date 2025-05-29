@@ -1,0 +1,346 @@
+/* Monochrome style overrides */
+:root {
+    --primary-color: #ffffff;
+    --secondary-color: #a0a0a0;
+    --dark-bg: #0a0a0a;
+    --darker-bg: #050505;
+    --light-text: #f0f0f0;
+    --highlight: #a0a0a0;
+    --gradient: none;
+    --card-bg: rgba(20, 20, 20, 0.8);
+    --header-bg: rgba(10, 10, 10, 0.9);
+    --border: 1px solid rgba(255, 255, 255, 0.1);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Apply grayscale to main layout elements, but specifically EXEMPT tab-image and their content */
+header,
+main > section,
+footer {
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+}
+
+/* DIRECT EXEMPTION for force-color elements - these must NEVER be grayscale */
+.force-color,
+.force-color *,
+.tab-image.force-color,
+.color-wrapper.force-color,
+img.force-color,
+section .tab-content .tab-image.force-color,
+section .tab-content .tab-image.force-color .color-wrapper.force-color,
+section .tab-content .tab-image.force-color .color-wrapper.force-color img.force-color,
+main > section.print-services .tab-content .tab-image.force-color .color-wrapper.force-color img.force-color,
+main > section.print-services .tab-content .tab-image.force-color {
+    filter: none !important;
+    -webkit-filter: none !important;
+    -moz-filter: none !important;
+    -o-filter: none !important;
+    -ms-filter: none !important;
+    filter: grayscale(0%) !important;
+    -webkit-filter: grayscale(0%) !important;
+    -moz-filter: grayscale(0%) !important;
+    -o-filter: grayscale(0%) !important;
+    -ms-filter: grayscale(0%) !important;
+    isolation: isolate !important;
+    position: relative !important;
+    z-index: 9999 !important;
+}
+
+/* EXEMPTION for tab images - these need to stay in color */
+.tab-image,
+.tab-image *,
+.color-wrapper,
+.color-wrapper img {
+    filter: none !important;
+    -webkit-filter: none !important;
+    -moz-filter: none !important;
+    -o-filter: none !important;
+    -ms-filter: none !important;
+    isolation: isolate !important;
+    z-index: 100 !important;
+    position: relative !important;
+}
+
+/* Ensure body itself does not have the filter, to avoid double-filtering or unexpected inheritance */
+body {
+    filter: none;
+    -webkit-filter: none;
+    -moz-filter: none;
+    -o-filter: none;
+    -ms-filter: none;
+    background-color: var(--dark-bg); /* Ensure body background is consistent */
+}
+
+/* Improve text visibility and contrast */
+p, li, h1, h2, h3, h4, h5, h6 {
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important;
+}
+
+.feature-card p, .material-showcase-content p, .tab-info p {
+    color: #e0e0e0 !important;
+}
+
+.material-specs li {
+    color: #d0d0d0 !important;
+}
+
+/* Override any colored elements */
+.highlight {
+    color: #ffffff !important;
+    font-weight: bold !important;
+}
+
+.btn.primary {
+    background-color: #707070 !important;
+    color: #ffffff !important;
+}
+
+.btn.primary:hover {
+    background-color: #505050 !important;
+}
+
+.btn.secondary:hover {
+    border-color: #707070 !important;
+    color: #e0e0e0 !important;
+}
+
+.feature-card h3 {
+    color: #ffffff !important;
+}
+
+.feature-card::before {
+    background: linear-gradient(to bottom, #c0c0c0, transparent) !important;
+}
+
+/* Improve tab button visibility */
+.tab-btn {
+    color: #c0c0c0 !important;
+    background-color: rgba(30, 30, 30, 0.7) !important;
+    padding: 0.8rem 1.5rem !important;
+    margin: 0 0.25rem !important;
+    border-radius: 4px 4px 0 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-bottom: none !important;
+}
+
+.tab-btn:hover {
+    color: #ffffff !important;
+    background-color: rgba(40, 40, 40, 0.9) !important;
+}
+
+.tab-btn.active {
+    color: #ffffff !important;
+    background-color: rgba(50, 50, 50, 0.95) !important;
+    border-bottom: 3px solid #ffffff !important;
+    font-weight: bold !important;
+}
+
+/* Improve material badge visibility */
+.material-name-badge {
+    background-color: #404040 !important;
+    color: #ffffff !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 4px !important;
+    font-weight: bold !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.material-showcase-content h4 {
+    color: #ffffff !important;
+    font-size: 1.4rem !important;
+    margin-bottom: 1rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+    padding-bottom: 0.5rem !important;
+}
+
+/* Improve tab content visibility */
+.tab-content {
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0 4px 4px 4px !important;
+    padding: 2rem !important;
+    background-color: rgba(25, 25, 25, 0.95) !important;
+}
+
+.tab-info h3 {
+    color: #ffffff !important;
+    font-size: 1.8rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+/* Remove any gradients or colored backgrounds for filtered sections */
+.hero {
+    background: radial-gradient(circle at center, rgba(40, 40, 40, 0.5), rgba(0, 0, 0, 0.8)), #0a0a0a !important;
+}
+
+.cta-section {
+    background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.7)), #050505 !important;
+}
+
+/* Ensure all backgrounds have good contrast for filtered sections */
+.feature-card, .material-showcase-content, .timeline-content, .tab-content, .mission {
+    background-color: rgba(20, 20, 20, 0.9) !important;
+}
+
+/* Improve mission section layout without image */
+.mission {
+    padding: 5rem 0 !important;
+    text-align: center !important;
+    background: linear-gradient(to bottom, rgba(30, 30, 30, 0.9), rgba(10, 10, 10, 0.95)) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.mission .container {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+}
+
+.mission h2 {
+    font-size: 2.5rem !important;
+    margin-bottom: 2rem !important;
+    position: relative !important;
+    display: inline-block !important;
+}
+
+.mission h2::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -10px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 2px !important;
+    background: linear-gradient(to right, transparent, #ffffff, transparent) !important;
+}
+
+.mission p {
+    font-size: 1.2rem !important;
+    line-height: 1.8 !important;
+    margin: 0 auto !important;
+}
+
+/* Improve feature card visibility */
+.feature-card {
+    background-color: rgba(30, 30, 30, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 2rem !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+    margin-bottom: 2rem !important;
+}
+
+.feature-card .feature-icon {
+    font-size: 2.5rem !important;
+    background-color: rgba(50, 50, 50, 0.8) !important;
+    padding: 1rem !important;
+    border-radius: 50% !important;
+    display: inline-block !important;
+    margin-bottom: 1.5rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.feature-card h3 {
+    color: #ffffff !important;
+    font-size: 1.5rem !important;
+    margin-bottom: 1rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding-bottom: 0.5rem !important;
+}
+
+.feature-card p {
+    color: #d0d0d0 !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.feature-card .feature-link {
+    color: #ffffff !important;
+    font-weight: bold !important;
+    text-decoration: underline !important;
+}
+
+/* Service features list styling */
+.service-features {
+    margin: 1.5rem 0 !important;
+}
+
+.service-features li {
+    color: #e0e0e0 !important;
+    margin-bottom: 0.5rem !important;
+    position: relative !important;
+    padding-left: 1.5rem !important;
+}
+
+.service-features li::before {
+    content: '→' !important;
+    position: absolute !important;
+    left: 0 !important;
+    color: #ffffff !important;
+}
+
+/* Create a better layout for tab content */
+.tab-content {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+@media (min-width: 768px) {
+    .tab-content {
+        flex-direction: row !important;
+        align-items: flex-start !important;
+        gap: 2rem !important;
+    }
+    
+    .tab-image {
+        flex: 1 !important;
+        margin-bottom: 0 !important;
+    }
+    
+    .tab-info {
+        flex: 1 !important;
+    }
+}
+
+/* Override any material colors */
+.material-name-badge[class*="🔵"],
+.material-name-badge[class*="⚫"],
+.material-name-badge[class*="⚪"],
+.material-name-badge[class*="🟤"],
+.material-name-badge[class*="🟢"],
+.material-name-badge[class*="🔴"] {
+    background: #505050 !important;
+    color: #ffffff !important;
+}
+
+/* Override section title styling */
+.section-title::after {
+    background: linear-gradient(to right, #a0a0a0, rgba(160, 160, 160, 0.3)) !important;
+}
+
+/* Enhance contrast for all text elements */
+.mission h2, .mission p,
+.materials-home h2, .materials-home p,
+.print-services h2, .print-services p,
+.how-it-works h2, .how-it-works p,
+.cta-section h2, .cta-section p {
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Ensure good contrast for footer text */
+footer h2, footer h3, footer p, footer a {
+    color: #ffffff !important;
+}
+
+/* Final color adjust pass - applies to elements within filtered sections */
+header *,
+main > section *,
+footer * {
+    color-adjust: exact !important;
+    print-color-adjust: exact !important;
+} 

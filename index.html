@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robonium - Advanced 3D Printing Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="custom-styles.css">
+    <link rel="stylesheet" href="monochrome.css">
+    <link rel="stylesheet" href="color-images.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0a0a0a">
+    <script>
+        // Immediate execution script to force content visibility
+        (function() {
+            // Force document to have correct styles
+            document.documentElement.style.height = 'auto';
+            document.documentElement.style.overflow = 'auto';
+        })();
+    </script>
+    <style>
+        .stars {
+            background-color: #050505;
+        }
+        .twinkling {
+            background-color: transparent;
+        }
+        .hero {
+            background: radial-gradient(circle at center, rgba(40, 40, 40, 0.5), rgba(0, 0, 0, 0.8)), #0a0a0a;
+        }
+        .cta-section {
+            background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.7)), #050505;
+        }
+        
+        @media (max-width: 768px) {
+            header .container {
+                padding: 0 15px;
+            }
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            .features-row {
+                display: flex;
+                flex-direction: column;
+            }
+            .feature-card {
+                width: 100% !important;
+            }
+        }
+        
+        /* Ensure these specific images are never grayscale under any circumstances */
+        .force-color,
+        .force-color *,
+        .tab-image.force-color,
+        .tab-image.force-color *,
+        .color-wrapper.force-color,
+        .color-wrapper.force-color *,
+        img.force-color,
+        #print-services .tab-image,
+        #print-services .tab-image *,
+        #print-services .color-wrapper,
+        #print-services .color-wrapper *,
+        #print-services img {
+            filter: none !important;
+            -webkit-filter: none !important;
+            -moz-filter: none !important;
+            -o-filter: none !important;
+            -ms-filter: none !important;
+            filter: grayscale(0%) !important;
+            -webkit-filter: grayscale(0%) !important;
+            -moz-filter: grayscale(0%) !important;
+            -o-filter: grayscale(0%) !important;
+            -ms-filter: grayscale(0%) !important;
+            isolation: isolate !important;
+            position: relative !important;
+            z-index: 9999 !important;
+            background-color: transparent !important;
+        }
+        
+        /* Create a separate stacking context for the entire services section */
+        #print-services {
+            isolation: isolate !important;
+            position: relative !important;
+            z-index: 200 !important;
+        }
+    </style>
+    <!-- Script to force colored images -->
+    <script>
+        // This script runs as soon as possible to ensure images are displayed in color
+        document.addEventListener('DOMContentLoaded', function() {
+            // Force color on all service images
+            const images = document.querySelectorAll('#print-services .tab-image img, #print-services .color-wrapper img, img.force-color');
+            const containers = document.querySelectorAll('#print-services .tab-image, #print-services .color-wrapper, .force-color');
+            
+            // Apply styles directly to images
+            images.forEach(img => {
+                img.style.filter = 'none';
+                img.style.webkitFilter = 'none';
+                img.style.filter = 'grayscale(0%)';
+                img.style.webkitFilter = 'grayscale(0%)';
+                img.style.isolation = 'isolate';
+                img.style.position = 'relative';
+                img.style.zIndex = '9999';
+            });
+            
+            // Apply styles to containers
+            containers.forEach(container => {
+                container.style.filter = 'none';
+                container.style.webkitFilter = 'none';
+                container.style.filter = 'grayscale(0%)';
+                container.style.webkitFilter = 'grayscale(0%)';
+                container.style.isolation = 'isolate';
+                container.style.position = 'relative';
+                container.style.zIndex = '9999';
+            });
+            
+            // Make the entire services section a stacking context
+            const servicesSection = document.getElementById('print-services');
+            if (servicesSection) {
+                servicesSection.style.isolation = 'isolate';
+                servicesSection.style.position = 'relative';
+                servicesSection.style.zIndex = '200';
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>ROBONIUM</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="journey.html">Journey</a></li>
+                    <li><a href="#print-services">Services</a></li>
+                    <li><a href="#how-it-works">Process</a></li>
+                    <li><a href="upload.html">Upload</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-modern">
+                <div class="hero-content">
+                    <h2>CREATING <span class="highlight">TOMORROW</span><br>THROUGH 3D INNOVATION</h2>
+                    <p>Precision 3D printing services for prototypes, production parts, and creative projects</p>
+                    <div class="cta-buttons">
+                        <a href="#print-services" class="btn primary">START PRINTING</a>
+                        <a href="contact.html" class="btn secondary">GET A QUOTE</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Why Choose <span class="highlight">Robonium</span></h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Precision Engineering</h3>
+                        <p>High-resolution printing with accuracy down to 25 microns for perfect prototypes</p>
+                        <a href="#print-services" class="feature-link">Learn More</a>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Rapid Turnaround</h3>
+                        <p>Fast production times with quick delivery options available nationwide</p>
+                        <a href="#how-it-works" class="feature-link">Learn More</a>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌈</div>
+                        <h3>Material Diversity</h3>
+                        <p>Wide range of materials including PLA, ABS, PETG, TPU, nylon, and more</p>
+                        <a href="#materials" class="feature-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mission">
+            <div class="container">
+                <h2>Our Expertise</h2>
+                <p>At Robonium, we specialize in transforming digital designs into physical reality. Our advanced 3D printing technology and expert team ensure that every project—from intricate prototypes to production parts—meets the highest standards of quality and precision.</p>
+            </div>
+        </section>
+
+        <section class="materials-home" id="materials">
+            <div class="container">
+                <h2>Materials & <span class="highlight">Technology</span></h2>
+                <p class="section-intro">We offer a wide range of materials to suit various applications and requirements</p>
+                
+                <div class="materials-showcase-timeline">
+                    
+                    <div class="material-showcase-item">
+                        <div class="material-name-badge">🔵 Standard PLA</div>
+                        <div class="material-showcase-content">
+                            <h4>Versatile & Eco-Friendly</h4>
+                            <p>Biodegradable and easy to print. Great for visual models, prototypes, and general-purpose projects where high strength or temperature resistance isn't critical.</p>
+                            <div class="material-specs-grid">
+                                <ul class="material-specs">
+                                    <li><strong>Resolution:</strong> ±0.1mm</li>
+                                    <li><strong>Strength:</strong> Medium</li>
+                                    <li><strong>Heat Resistance:</strong> Low (approx. 60°C)</li>
+                                    <li><strong>Colors:</strong> Multiple options</li>
+                                    <li><strong>Best for:</strong> Visual prototypes, models</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="material-showcase-item">
+                        <div class="material-name-badge">⚫ ABS & PETG</div>
+                        <div class="material-showcase-content">
+                            <h4>Durable Engineering Plastics</h4>
+                            <p>ABS offers good impact resistance and toughness. PETG is strong, durable, and easier to print than ABS, with good chemical resistance.</p>
+                            <div class="material-specs-grid">
+                                <ul class="material-specs">
+                                    <li><strong>Resolution:</strong> ±0.1mm - ±0.2mm</li>
+                                    <li><strong>Strength:</strong> High (PETG slightly higher)</li>
+                                    <li><strong>Heat Resistance:</strong> ABS (approx. 100°C), PETG (approx. 80°C)</li>
+                                    <li><strong>Colors:</strong> Multiple options</li>
+                                    <li><strong>Best for:</strong> Functional parts, enclosures</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="material-showcase-item">
+                        <div class="material-name-badge">⚪ Nylon</div>
+                        <div class="material-showcase-content">
+                            <h4>Strong & Abrasion Resistant</h4>
+                            <p>Extremely tough, durable, and versatile with excellent abrasion resistance. Ideal for functional parts like gears, hinges, and living hinges.</p>
+                            <div class="material-specs-grid">
+                                <ul class="material-specs">
+                                    <li><strong>Resolution:</strong> ±0.15mm - ±0.25mm</li>
+                                    <li><strong>Strength:</strong> Very High</li>
+                                    <li><strong>Heat Resistance:</strong> High (approx. 120-150°C, varies by type)</li>
+                                    <li><strong>Colors:</strong> Typically white/natural, dyeable</li>
+                                    <li><strong>Best for:</strong> Gears, tools, durable parts</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="material-showcase-item">
+                        <div class="material-name-badge">🟤 TPU Flexible</div>
+                        <div class="material-showcase-content">
+                            <h4>Rubber-like Elasticity</h4>
+                            <p>Thermoplastic Polyurethane (TPU) is a flexible, rubber-like material. Excellent for parts requiring elasticity, impact absorption, or vibration dampening.</p>
+                            <div class="material-specs-grid">
+                                <ul class="material-specs">
+                                    <li><strong>Resolution:</strong> ±0.2mm - ±0.3mm</li>
+                                    <li><strong>Flexibility:</strong> High (Shore A hardness varies)</li>
+                                    <li><strong>Durability:</strong> Good abrasion resistance</li>
+                                    <li><strong>Colors:</strong> Multiple options</li>
+                                    <li><strong>Best for:</strong> Seals, grips, flexible joints</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="material-showcase-item">
+                        <div class="material-name-badge">🟢 Resin (SLA/DLP)</div>
+                        <div class="material-showcase-content">
+                            <h4>Ultra-High Detail</h4>
+                            <p>Resin-based printing (SLA/DLP) offers exceptional detail, smooth surface finish, and dimensional accuracy. Ideal for intricate models, jewelry, and dental applications.</p>
+                            <div class="material-specs-grid">
+                                <ul class="material-specs">
+                                    <li><strong>Resolution:</strong> ±0.025mm - ±0.05mm</li>
+                                    <li><strong>Strength:</strong> Varies (Standard, Tough, Castable, etc.)</li>
+                                    <li><strong>Detail:</strong> Very High</li>
+                                    <li><strong>Colors:</strong> Various, including clear & colored</li>
+                                    <li><strong>Best for:</strong> Miniatures, molds, dental models</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="material-showcase-item">
+                        <div class="material-name-badge">🔴 Specialty Materials</div>
+                        <div class="material-showcase-content">
+                            <h4>Advanced Applications</h4>
+                            <p>We also offer a range of specialty materials including Carbon Fiber reinforced filaments (for high strength-to-weight), metal-infused filaments (for a metallic look/feel), and other engineering-grade polymers.</p>
+                            <div class="material-specs-grid">
+                                <ul class="material-specs">
+                                    <li><strong>Properties:</strong> Application-specific (e.g., high stiffness, conductivity)</li>
+                                    <li><strong>Performance:</strong> Tailored for demanding uses</li>
+                                    <li><strong>Availability:</strong> Consult for options and lead times</li>
+                                    <li><strong>Best for:</strong> Engineering prototypes, jigs, fixtures</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="materials-cta">
+                    <a href="contact.html" class="btn primary">Get a Quote</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="print-services" id="print-services" style="isolation: isolate !important; z-index: 100 !important;">
+            <div class="container">
+                <h2>Our <span class="highlight">Services</span> In Detail</h2>
+                
+                <div class="tabs-container">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="prototyping">Prototyping</button>
+                        <button class="tab-btn" data-tab="production">Production</button>
+                        <button class="tab-btn" data-tab="custom">Custom Projects</button>
+                        <button class="tab-btn" data-tab="design">Design Services</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="prototyping">
+                        <div class="tab-image force-color">
+                            <div class="color-wrapper force-color">
+                                <img src="images/Rapid_Prototyping.png" alt="Prototyping Services" loading="lazy" class="force-color">
+                            </div>
+                        </div>
+                        <div class="tab-info">
+                            <h3>Rapid Prototyping</h3>
+                            <p>Turn your ideas into physical prototypes quickly and efficiently. Our rapid prototyping services allow you to test, validate, and refine your designs before committing to mass production.</p>
+                            <ul class="service-features">
+                                <li>Fast turnaround times</li>
+                                <li>Multiple material options</li>
+                                <li>Design feedback and optimization</li>
+                                <li>Iterative prototyping support</li>
+                            </ul>
+                            <a href="contact.html" class="btn secondary">Get Started</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="production">
+                        <div class="tab-image force-color">
+                            <div class="color-wrapper force-color">
+                                <img src="images/Production.png" alt="Production Services" loading="lazy" class="force-color">
+                            </div>
+                        </div>
+                        <div class="tab-info">
+                            <h3>Scaled Production</h3>
+                            <p>Scale from prototype to production with our additive manufacturing services. We offer small to medium batch production runs with consistent quality and material properties.</p>
+                            <ul class="service-features">
+                                <li>Consistent part quality</li>
+                                <li>Batches from 10-1000+ parts</li>
+                                <li>Quality control and inspection</li>
+                                <li>Production-grade materials</li>
+                            </ul>
+                            <a href="contact.html" class="btn secondary">Get Started</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="custom">
+                        <div class="tab-image force-color">
+                            <div class="color-wrapper force-color">
+                                <img src="images/placeholder.svg" alt="Custom Projects" loading="lazy" class="force-color">
+                            </div>
+                        </div>
+                        <div class="tab-info">
+                            <h3>Custom Projects</h3>
+                            <p>Have a unique or complex project? Our team specializes in bringing challenging ideas to life with innovative solutions and expert knowledge.</p>
+                            <ul class="service-features">
+                                <li>Complex geometry printing</li>
+                                <li>Multi-material assemblies</li>
+                                <li>Functional mechanical parts</li>
+                                <li>Artistic and conceptual pieces</li>
+                            </ul>
+                            <a href="contact.html" class="btn secondary">Get Started</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="design">
+                        <div class="tab-image force-color">
+                            <div class="color-wrapper force-color">
+                                <img src="images/placeholder.svg" alt="Design Services" loading="lazy" class="force-color">
+                            </div>
+                        </div>
+                        <div class="tab-info">
+                            <h3>Design & Consultation</h3>
+                            <p>Don't have a 3D model? Our design team can help create print-ready models from your sketches, ideas, or requirements specifications.</p>
+                            <ul class="service-features">
+                                <li>3D modeling and design</li>
+                                <li>Reverse engineering</li>
+                                <li>Design optimization for printing</li>
+                                <li>Technical consultation</li>
+                            </ul>
+                            <a href="contact.html" class="btn secondary">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="how-it-works" id="how-it-works">
+            <div class="container">
+                <h2>Our <span class="highlight">Process</span></h2>
+                <p class="section-intro">From concept to delivery, we make 3D printing easy and accessible</p>
+                
+                <div class="materials-showcase-timeline">
+                    <div class="material-showcase-item">
+                        <div class="material-name-badge">01</div>
+                        <div class="material-showcase-content">
+                            <h4>Submit Your Design</h4>
+                            <p>Upload your 3D model file or work with our design team to create one. We'll review it for printability and provide feedback.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="material-showcase-item">
+                        <div class="material-name-badge">02</div>
+                        <div class="material-showcase-content">
+                            <h4>Get a Quote</h4>
+                            <p>Receive a detailed quote based on material, size, complexity, and quantity. We'll help you select the optimal printing parameters.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="material-showcase-item">
+                        <div class="material-name-badge">03</div>
+                        <div class="material-showcase-content">
+                            <h4>Print & Quality Check</h4>
+                            <p>Once approved, we'll print your part using our advanced 3D printers and perform thorough quality control checks.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="material-showcase-item">
+                        <div class="material-name-badge">04</div>
+                        <div class="material-showcase-content">
+                            <h4>Finishing & Delivery</h4>
+                            <p>After printing, we'll apply any requested finishing processes and safely package and ship your parts to you.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cta-buttons center">
+                    <a href="upload.html" class="btn monochrome">Start Your Project</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Bring Your Ideas to Life?</h2>
+                    <p>Get started with Robonium today and experience the future of manufacturing.</p>
+                    <div class="cta-buttons">
+                        <a href="upload.html" class="btn primary">Upload Your Design</a>
+                        <a href="contact.html" class="btn secondary">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>ROBONIUM</h2>
+                    <p>Creating tomorrow through 3D innovation</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="journey.html">Our Journey</a></li>
+                        <li><a href="#print-services">Services</a></li>
+                        <li><a href="#materials">Materials</a></li>
+                        <li><a href="upload.html">Upload Files</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@robonium.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <p>Address: 123 Innovation Drive<br>Tech City, CA 90210</p>
+                    
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">🔵</a>
+                        <a href="#" class="social-icon">🟣</a>
+                        <a href="#" class="social-icon">🔴</a>
+                        <a href="#" class="social-icon">⚪</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Robonium 3D Printing Services. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize mobile navigation
+            initMobileNavigation();
+            
+            // Function to initialize mobile navigation
+            function initMobileNavigation() {
+                const nav = document.querySelector('nav');
+                if (!nav) return;
+                
+                // Check if we're on a mobile device or small screen
+                const isMobile = window.innerWidth <= 768;
+                
+                if (isMobile) {
+                    // Add mobile navigation toggle
+                    if (!document.querySelector('.mobile-toggle')) {
+                        const mobileToggle = document.createElement('div');
+                        mobileToggle.className = 'mobile-toggle';
+                        mobileToggle.innerHTML = '☰';
+                        mobileToggle.setAttribute('aria-label', 'Toggle menu');
+                        mobileToggle.setAttribute('role', 'button');
+                        mobileToggle.setAttribute('tabindex', '0');
+                        
+                        document.querySelector('header .container').insertBefore(
+                            mobileToggle, 
+                            document.querySelector('header .container').lastChild
+                        );
+                        
+                        mobileToggle.addEventListener('click', function() {
+                            nav.querySelector('ul').classList.toggle('active');
+                            this.innerHTML = nav.querySelector('ul').classList.contains('active') ? '✕' : '☰';
+                        });
+                    }
+                    
+                    // Use class approach rather than direct style manipulation
+                    document.body.classList.add('mobile-device');
+                    
+                    // Make sure the active link is visible
+                    const activeLink = nav.querySelector('.active');
+                    if (activeLink) {
+                        // Wait for the layout to settle
+                        setTimeout(() => {
+                            // Scroll to center the active link
+                            activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                        }, 100);
+                    }
+                }
+            }
+            
+            // Listen for window resize
+            window.addEventListener('resize', function() {
+                initMobileNavigation();
+            });
+        });
+    </script>
+    <script>
+        // Run immediately without waiting for DOMContentLoaded
+        (function() {
+            // Force content visibility
+            document.documentElement.style.height = 'auto';
+            document.body.style.height = 'auto';
+            document.body.style.position = 'static';
+            document.body.style.overflow = 'auto';
+            
+            // Add a slight delay to ensure everything is rendered
+            setTimeout(function() {
+                // Force all sections to be visible
+                var sections = document.querySelectorAll('section');
+                for (var i = 0; i < sections.length; i++) {
+                    sections[i].style.display = 'block';
+                    sections[i].style.visibility = 'visible';
+                    sections[i].style.opacity = '1';
+                }
+                
+                // Ensure main content is visible
+                var main = document.querySelector('main');
+                if (main) {
+                    main.style.display = 'block';
+                    main.style.visibility = 'visible';
+                    main.style.paddingTop = '80px';
+                    main.style.overflow = 'auto';
+                }
+                
+                // Fix header
+                var header = document.querySelector('header');
+                if (header) {
+                    header.style.position = 'fixed';
+                    header.style.top = '0';
+                    header.style.left = '0';
+                    header.style.width = '100%';
+                    header.style.zIndex = '9999';
+                    header.style.display = 'flex';
+                }
+                
+                // Add class to body for CSS targeting
+                document.body.classList.add('emergency-fix');
+                
+                // Ensure proper styling for feature cards
+                var featureCards = document.querySelectorAll('.feature-card');
+                for (var i = 0; i < featureCards.length; i++) {
+                    featureCards[i].style.transform = 'none';
+                    featureCards[i].style.flex = '1';
+                    featureCards[i].style.margin = '0 0 1rem 0';
+                }
+                
+                // Correct features row layout based on screen size
+                var featuresRow = document.querySelector('.features-row');
+                if (featuresRow) {
+                    if (window.innerWidth <= 768) {
+                        featuresRow.style.flexDirection = 'column';
+                    } else {
+                        featuresRow.style.flexDirection = 'row';
+                        featuresRow.style.display = 'flex';
+                        featuresRow.style.flexWrap = 'nowrap';
+                    }
+                }
+            }, 100);
+        })();
+    </script>
+    
+    <script>
+        // Force process steps to be visible
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make process items visible
+            const processItems = document.querySelectorAll('.how-it-works .material-showcase-item');
+            processItems.forEach(function(item) {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            });
+            
+            // Ensure proper visibility of how-it-works section
+            const howItWorks = document.querySelector('.how-it-works');
+            if (howItWorks) {
+                howItWorks.style.display = 'block';
+                howItWorks.style.visibility = 'visible';
+                howItWorks.style.opacity = '1';
+                howItWorks.style.backgroundColor = 'rgba(10, 10, 10, 0.9)';
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,31 @@
+{
+  "name": "robonium-3d-printing",
+  "version": "1.0.0",
+  "description": "3D Printing service website with quote request functionality",
+  "main": "send-quote-request.js",
+  "scripts": {
+    "start": "node send-quote-request.js",
+    "dev": "nodemon send-quote-request.js",
+    "start:dev": "PORT=3001 ENABLE_EMAILS=false node send-quote-request.js",
+    "start:emails": "PORT=3001 ENABLE_EMAILS=true node send-quote-request.js",
+    "script": "./start-server.sh"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "form-data": "^4.0.2",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^2.7.0",
+    "resend": "^2.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

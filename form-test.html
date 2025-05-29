@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        form {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+            white-space: pre-wrap;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Form Submission Test</h1>
+    <p>This page tests the quote request form submission functionality.</p>
+    
+    <form id="test-form">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="Test User" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="test@example.com" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" value="555-1234">
+        </div>
+        
+        <div class="form-group">
+            <label for="material">Material:</label>
+            <select id="material" name="material" required>
+                <option value="PLA">PLA</option>
+                <option value="ABS">ABS</option>
+                <option value="PETG">PETG</option>
+                <option value="Resin">Resin</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="color">Color:</label>
+            <select id="color" name="color">
+                <option value="Black">Black</option>
+                <option value="White">White</option>
+                <option value="Red">Red</option>
+                <option value="Custom">Custom</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="finish">Surface Finish:</label>
+            <select id="finish" name="finish">
+                <option value="Standard">Standard</option>
+                <option value="Smooth">Smooth</option>
+                <option value="Matte">Matte</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="timeline">Timeline:</label>
+            <select id="timeline" name="timeline">
+                <option value="Standard">Standard (1-2 weeks)</option>
+                <option value="Rush">Rush (3-5 days)</option>
+                <option value="Urgent">Urgent (1-2 days)</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="notes">Notes:</label>
+            <textarea id="notes" name="notes" rows="4">This is a test submission.</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="file">Test File:</label>
+            <input type="file" id="file" name="models" accept=".stl,.obj,.step,.stp,.3mf">
+        </div>
+        
+        <button type="submit">Submit Test Form</button>
+    </form>
+    
+    <div id="result"></div>
+    
+    <script>
+        document.getElementById('test-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Submitting form...</p>';
+            resultDiv.className = '';
+            
+            try {
+                const formData = new FormData(this);
+                
+                // Add a simplified profile summary
+                const profilesSummary = {
+                    global: {
+                        material: formData.get('material'),
+                        quantity: parseInt(formData.get('quantity')) || 1,
+                        color: formData.get('color'),
+                        finish: formData.get('finish')
+                    },
+                    perFile: []
+                };
+                
+                // If a file is selected, add it to the profiles
+                const fileInput = document.getElementById('file');
+                if (fileInput.files && fileInput.files.length > 0) {
+                    profilesSummary.perFile.push({
+                        name: fileInput.files[0].name,
+                        profile: {
+                            material: 'Use global setting',
+                            quantity: 'Use global setting',
+                            color: 'Use global setting',
+                            finish: 'Use global setting',
+                            notes: 'None'
+                        }
+                    });
+                }
+                
+                formData.append('profiles_summary', JSON.stringify(profilesSummary));
+                
+                // Use hardcoded URL for testing
+                const serverUrl = 'http://localhost:3001/submit-quote-request';
+                
+                // Log what we're sending
+                console.log('Submitting to:', serverUrl);
+                
+                // Log form data (can't directly log the FormData object)
+                const formDataEntries = {};
+                for (let [key, value] of formData.entries()) {
+                    formDataEntries[key] = value instanceof File ? `File: ${value.name}` : value;
+                }
+                console.log('Form data:', formDataEntries);
+                
+                const response = await fetch(serverUrl, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                // Log response headers
+                const headers = {};
+                response.headers.forEach((value, key) => {
+                    headers[key] = value;
+                });
+                console.log('Response status:', response.status, response.statusText);
+                console.log('Response headers:', headers);
+                
+                // Try to get response as JSON
+                let jsonResponse;
+                let textResponse;
+                
+                try {
+                    // Clone the response for text fallback
+                    const responseClone = response.clone();
+                    
+                    // Try to parse as JSON
+                    jsonResponse = await response.json();
+                    console.log('JSON response:', jsonResponse);
+                    
+                    resultDiv.innerHTML = `
+                        <p class="success">Form submitted successfully!</p>
+                        <pre>${JSON.stringify(jsonResponse, null, 2)}</pre>
+                    `;
+                    resultDiv.className = 'success';
+                } catch (jsonError) {
+                    console.error('Failed to parse response as JSON:', jsonError);
+                    
+                    // Try to get as text
+                    try {
+                        textResponse = await responseClone.text();
+                        console.log('Text response:', textResponse);
+                    } catch (textError) {
+                        textResponse = 'Could not read response body';
+                        console.error('Error reading response as text:', textError);
+                    }
+                    
+                    resultDiv.innerHTML = `
+                        <p class="error">Error: Failed to parse server response as JSON</p>
+                        <p>Status: ${response.status} ${response.statusText}</p>
+                        <p>Content-Type: ${response.headers.get('content-type') || 'Not specified'}</p>
+                        <p>Response body:</p>
+                        <pre>${textResponse}</pre>
+                    `;
+                    resultDiv.className = 'error';
+                }
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                
+                resultDiv.innerHTML = `
+                    <p class="error">Error: ${error.message}</p>
+                    <p>Check the console for more details.</p>
+                `;
+                resultDiv.className = 'error';
+            }
+        });
+    </script>
+</body>
+</html> 

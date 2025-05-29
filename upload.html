@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Upload Models | Robonium</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="custom-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Three.js for 3D visualization - Using more stable CDN URLs -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/STLLoader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/OBJLoader.min.js"></script>
+    <!-- Fallback script to load Three.js from alternative CDN if primary fails -->
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            if (typeof THREE === 'undefined') {
+                console.error('THREE not loaded from primary CDN, trying alternative source');
+                const scripts = [
+                    { src: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r132/three.min.js', id: 'three-core' },
+                    { src: 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r132/examples/js/controls/OrbitControls.js', id: 'three-controls' },
+                    { src: 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r132/examples/js/loaders/STLLoader.js', id: 'three-stl' },
+                    { src: 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r132/examples/js/loaders/OBJLoader.js', id: 'three-obj' }
+                ];
+                const head = document.getElementsByTagName('head')[0];
+                scripts.forEach(function(script) {
+                    const scriptEl = document.createElement('script');
+                    scriptEl.src = script.src;
+                    scriptEl.id = script.id;
+                    head.appendChild(scriptEl);
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>ROBONIUM</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="journey.html">Journey</a></li>
+                    <li><a href="index.html#print-services">Services</a></li>
+                    <li><a href="index.html#how-it-works">Process</a></li>
+                    <li><a href="upload.html" class="active">Upload</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h2>Upload Your <span class="highlight">3D Models</span></h2>
+            <p>Upload your models, specify requirements, and we'll get back to you with a quote</p>
+        </section>
+
+        <section class="upload-container">
+            <div class="upload-grid">
+                <div class="upload-form-container">
+                    <h3>Your Requirements</h3>
+                    <form id="upload-form" class="upload-form">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Upload Your 3D Models</label>
+                            <div class="file-upload-container">
+                                <div id="file-drop-area" class="file-drop-area">
+                                    <div class="file-drop-icon">📁</div>
+                                    <p>Drag & drop files here or <span class="file-browse">browse files</span></p>
+                                    <p class="file-types">Supported formats: STL, OBJ, STEP, 3MF (Max 50MB each)</p>
+                                    <p class="file-notice">Your files will be attached to the confirmation email and sent to our team for review</p>
+                                </div>
+                                <input type="file" id="model-files" name="models" multiple accept=".stl,.obj,.step,.stp,.3mf" class="file-input" hidden>
+                            </div>
+                            <div id="file-list" class="file-list"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="material">Material Preference</label>
+                            <select id="material" name="material" required>
+                                <option value="" disabled selected>Select a material</option>
+                                <option value="pla">Standard PLA</option>
+                                <option value="abs">ABS</option>
+                                <option value="petg">PETG</option>
+                                <option value="nylon">Nylon</option>
+                                <option value="tpu">TPU Flexible</option>
+                                <option value="resin">Resin (SLA/DLP)</option>
+                                <option value="specialty">Specialty Materials</option>
+                                <option value="unsure">Not Sure (We'll recommend)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="color">Color Preference</label>
+                            <input type="text" id="color" name="color" placeholder="e.g., Black, White, Red, or specific color code">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="finish">Surface Finish</label>
+                            <select id="finish" name="finish">
+                                <option value="" disabled selected>Select a finish</option>
+                                <option value="standard">Standard</option>
+                                <option value="smooth">Smooth</option>
+                                <option value="polished">Polished</option>
+                                <option value="painted">Painted</option>
+                                <option value="unsure">Not Sure (We'll recommend)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="timeline">Required Timeline</label>
+                            <select id="timeline" name="timeline">
+                                <option value="" disabled selected>Select a timeline</option>
+                                <option value="standard">Standard (5-7 business days)</option>
+                                <option value="expedited">Expedited (3-4 business days)</option>
+                                <option value="rush">Rush (1-2 business days)</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Additional Notes</label>
+                            <textarea id="notes" name="notes" rows="4" placeholder="Any specific requirements or questions?"></textarea>
+                        </div>
+                        
+                        <div class="form-group submission-buttons">
+                            <button type="submit" class="btn primary">Submit Request</button>
+                            <button type="reset" class="btn secondary">Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="model-visualizer-container">
+                    <h3>3D Model Visualizer</h3>
+                    <div class="model-visualizer">
+                        <div id="model-viewer" class="model-viewer"></div>
+                        <div class="model-controls">
+                            <div class="model-selector" id="model-selector">
+                                <p>No models uploaded</p>
+                            </div>
+                            <div class="view-controls">
+                                <button id="rotate-view" class="btn control-btn">Toggle Rotation</button>
+                                <button id="reset-view" class="btn control-btn">Reset View</button>
+                                <div class="color-preview">
+                                    <label for="preview-color">Preview Color:</label>
+                                    <input type="color" id="preview-color" value="#3498db">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="visualization-guide">
+                        <h4>How to Use the Visualizer</h4>
+                        <ul>
+                            <li><strong>Drag</strong> to rotate the model</li>
+                            <li><strong>Scroll</strong> to zoom in/out</li>
+                            <li><strong>Right-click + drag</strong> to pan</li>
+                            <li>Use the <strong>color picker</strong> to preview different colors</li>
+                            <li>Toggle <strong>rotation</strong> for a 360° view</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="upload-info">
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Tips for Better Prints</h3>
+                    <ul>
+                        <li>Ensure your model has proper wall thickness (min 1mm for most materials)</li>
+                        <li>Check for manifold errors or non-watertight meshes</li>
+                        <li>Consider the orientation of the model for strength and surface finish</li>
+                        <li>Add support structures for overhangs greater than 45 degrees if needed</li>
+                        <li>Include details about critical dimensions or tolerances in your notes</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3>What Happens Next?</h3>
+                    <ol>
+                        <li>Our team will review your models and requirements</li>
+                        <li>Your uploaded files will be automatically attached to your confirmation email</li>
+                        <li>We'll send you a detailed quote within 24 hours</li>
+                        <li>Once approved, we'll schedule your print job</li>
+                        <li>You'll receive progress updates via email</li>
+                        <li>We'll ship your completed prints to your address</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>ROBONIUM</h2>
+                <p>Excellence in 3D printing solutions</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="journey.html">Journey</a></li>
+                    <li><a href="index.html#print-services">Services</a></li>
+                    <li><a href="index.html#how-it-works">Process</a></li>
+                    <li><a href="upload.html">Upload</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <p>Email: info@robonium.tech</p>
+                <p>Location: Coimbatore, India</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">Twitter</a>
+                    <a href="#" class="social-icon">LinkedIn</a>
+                    <a href="#" class="social-icon">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Robonium Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Processing your request...</p>
+    </div>
+    
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="success-icon">✓</div>
+            <h3>Request Submitted!</h3>
+            <p>Thank you for your submission. A confirmation email with your files has been sent to your address.</p>
+            <div class="attachment-info-placeholder"></div>
+            <p>Our team will review your request and send you a detailed quote within 24 hours.</p>
+            <button class="btn primary close-btn">Done</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="upload.js"></script>
+</body>
+</html> 

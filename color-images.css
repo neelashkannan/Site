@@ -1,0 +1,121 @@
+/* Color Images CSS - Aggressive approach to ensure images display in color */
+
+/* NUCLEAR OPTION: This will absolutely ensure images with force-color class display in color */
+.force-color, 
+.force-color *, 
+.tab-image.force-color, 
+.color-wrapper.force-color, 
+img.force-color, 
+section .tab-content .tab-image.force-color, 
+section .tab-content .tab-image.force-color .color-wrapper.force-color, 
+section .tab-content .tab-image.force-color .color-wrapper.force-color img.force-color {
+    filter: none !important;
+    -webkit-filter: none !important;
+    -moz-filter: none !important;
+    -o-filter: none !important;
+    -ms-filter: none !important;
+    filter: grayscale(0%) !important;
+    -webkit-filter: grayscale(0%) !important;
+    -moz-filter: grayscale(0%) !important;
+    -o-filter: grayscale(0%) !important;
+    -ms-filter: grayscale(0%) !important;
+    isolation: isolate !important;
+    position: relative !important;
+    z-index: 999 !important;
+    will-change: filter, transform !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    background-color: transparent !important;
+}
+
+/* Even more specific targeting for tab-content section */
+main > section.print-services .tab-content .tab-image.force-color .color-wrapper.force-color img.force-color,
+main > section.print-services .tab-content .tab-image.force-color {
+    filter: none !important;
+    -webkit-filter: none !important;
+    filter: grayscale(0%) !important;
+    -webkit-filter: grayscale(0%) !important;
+    isolation: isolate !important;
+    z-index: 9999 !important;
+}
+
+/* Ensure images and their wrappers are NOT grayscale and are layer promoted */
+.color-wrapper,
+.color-wrapper img,
+.tab-image, /* Target the container as well */
+.tab-image img,
+img { /* General rule for all images */
+    filter: grayscale(0%) !important;
+    -webkit-filter: grayscale(0%) !important;
+    -moz-filter: grayscale(0%) !important;
+    -o-filter: grayscale(0%) !important;
+    -ms-filter: grayscale(0%) !important;
+    isolation: isolate !important; /* Crucial for breaking filter inheritance */
+    position: relative !important; /* Needed for z-index and transforms */
+    z-index: 100 !important;       /* High z-index to lift above parent context */
+    will-change: filter, transform !important; /* Hint for layer promotion */
+    transform: translateZ(0) !important;       /* Force hardware acceleration/layer */
+    -webkit-transform: translateZ(0) !important;
+    background-color: transparent !important; /* Prevent interfering backgrounds */
+}
+
+/* Specific containers known to hold images that should be in color */
+.feature-icon,
+.material-icon {
+    filter: grayscale(0%) !important;
+    -webkit-filter: grayscale(0%) !important;
+    isolation: isolate !important;
+    will-change: filter, transform !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    background-color: transparent !important;
+}
+
+/* Styling for tab images for visual presentation (borders, shadows, etc.) */
+/* This should NOT apply any filters itself, as it's handled by the rules above */
+.tab-image { /* This class is on the container of .color-wrapper */
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(100, 100, 100, 0.2); /* Softer border */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    /* Ensure filter:none is re-stated if there was any doubt */
+    filter: none !important; 
+    -webkit-filter: none !important;
+}
+
+.tab-image img { /* This is inside .color-wrapper which is inside .tab-image */
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.2s ease-out;
+}
+
+.tab-image:hover img {
+    transform: scale(1.02);
+}
+
+/* If any other specific image containers are added, they should also get these forceful overrides */
+.mission-image img, /* Example if mission image is re-added and wrapped */
+.material-showcase-content img,
+.material-timeline-item img {
+    filter: grayscale(0%) !important;
+    -webkit-filter: grayscale(0%) !important;
+    isolation: isolate !important;
+    will-change: filter, transform !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+}
+
+/* Safari/iOS specific fix for rendering filters and transforms */
+@media not all and (min-resolution:.001dpcm) { 
+    @supports (-webkit-appearance:none) {
+        .color-wrapper,
+        .color-wrapper img,
+        img,
+        .tab-image {
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+    }
+} 

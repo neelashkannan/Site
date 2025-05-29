@@ -1,0 +1,11 @@
+Space-themed background images required:
+
+1. stars.png - A static starfield background image
+   This should be a dark/black background with small white dots representing stars.
+
+2. twinkling.png - A semi-transparent overlay with larger stars
+   This should be transparent with some larger, brighter stars that will be animated
+   to create the twinkling effect.
+
+These images need to be placed in this directory for the space background effect to work.
+You can create these as PNG files with transparency as needed. 

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Robonium</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        // Immediate execution script to force content visibility
+        (function() {
+            // Force document to have correct styles
+            document.documentElement.style.height = 'auto';
+            document.documentElement.style.overflow = 'auto';
+        })();
+    </script>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>ROBONIUM</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="journey.html">Journey</a></li>
+                    <li><a href="index.html#print-services">Services</a></li>
+                    <li><a href="index.html#how-it-works">Process</a></li>
+                    <li><a href="upload.html">Upload</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h2>Get in <span class="highlight">Touch</span></h2>
+            <p>Have questions or ready to start your 3D printing project? We're here to help.</p>
+        </section>
+
+        <section class="contact-grid">
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number (Optional)</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject">
+                            <option value="quote">Request a Quote</option>
+                            <option value="info">General Information</option>
+                            <option value="support">Technical Support</option>
+                            <option value="partnership">Partnership Inquiry</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="file">Attach File (Optional)</label>
+                        <input type="file" id="file" name="file">
+                        <small>Upload your 3D model or design files (max 20MB)</small>
+                    </div>
+                    <button type="submit" class="btn primary">Send Message</button>
+                </form>
+            </div>
+
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-icon">📞</div>
+                    <h4>Phone</h4>
+                    <p>+1 (555) 123-4567</p>
+                    <p>Monday-Friday: 9am-6pm PT</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">✉️</div>
+                    <h4>Email</h4>
+                    <p>info@robonium.tech</p>
+                    <p>support@robonium.tech</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">📍</div>
+                    <h4>Office Location</h4>
+                    <p>123 Innovation Street</p>
+                    <p>Coimbatore, Tamil Nadu, India</p>
+                </div>
+                
+                <div class="social-card">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">LinkedIn</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">YouTube</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-section">
+            <h3>Visit Our Facility</h3>
+            <div class="map-container">
+                <img src="images/map-location.jpg" alt="Map of Robonium location" class="map-image">
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <h2>Frequently Asked <span class="highlight">Questions</span></h2>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>How do I get a quote for my 3D printing project?</h3>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>You can request a quote by filling out our contact form above, emailing us directly at info@robonium.tech, or calling our office during business hours. For the most accurate quote, please include details about your project requirements, material preferences, and any deadlines.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>What information should I provide when requesting a quote?</h3>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>To provide the most accurate quote, please include: your 3D model file (if available), quantity needed, material preferences, desired finish, dimensional requirements, timeline, and any specific functional requirements. The more details you provide, the more precise our quote will be.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Can I visit your facility to discuss my project in person?</h3>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Yes! We welcome visitors to our Coimbatore facility. Please contact us in advance to schedule an appointment so we can ensure the appropriate team members are available to discuss your specific project needs.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Do you offer rush services for urgent projects?</h3>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Yes, we offer rush services for projects with tight deadlines. Depending on current production volumes and the complexity of your project, we can often accommodate expedited timelines. Rush services may incur additional fees, which will be clearly outlined in your quote.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>What payment methods do you accept?</h3>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>We accept all major credit cards, PayPal, and bank transfers. For larger projects, we typically require a 50% deposit to begin production, with the remaining balance due upon completion before shipping.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Ideas into Reality?</h2>
+                <p>Our team is standing by to help bring your 3D printing project to life.</p>
+                <a href="index.html#print-services" class="btn primary">Start Your Project</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>ROBONIUM</h2>
+                <p>Excellence in 3D printing solutions</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="journey.html">Journey</a></li>
+                    <li><a href="index.html#print-services">Services</a></li>
+                    <li><a href="index.html#how-it-works">Process</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <p>Email: info@robonium.tech</p>
+                <p>Location: Coimbatore, India</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">Twitter</a>
+                    <a href="#" class="social-icon">LinkedIn</a>
+                    <a href="#" class="social-icon">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Robonium Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+    <!-- Mobile view fixes script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add a general check for mobile iOS devices
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            if (isIOS) {
+                // Add an iOS-specific class to the body
+                document.body.classList.add('ios-device');
+                
+                // Force main content to be visible
+                const main = document.querySelector('main');
+                if (main) {
+                    main.style.display = 'block';
+                    main.style.visibility = 'visible';
+                    main.style.paddingTop = '140px';
+                }
+                
+                // Force sections to be visible
+                const sections = document.querySelectorAll('main section');
+                sections.forEach(section => {
+                    section.style.display = 'block';
+                    section.style.visibility = 'visible';
+                });
+                
+                // Ensure header is visible
+                const header = document.querySelector('header');
+                if (header) {
+                    header.style.display = 'flex';
+                    header.style.visibility = 'visible';
+                    header.style.opacity = '1';
+                    header.style.zIndex = '3000';
+                }
+            }
+            
+            // Force visibility for all mobile devices
+            if (window.innerWidth <= 768) {
+                // Ensure main content is visible
+                const main = document.querySelector('main');
+                if (main) {
+                    main.style.display = 'block';
+                    main.style.visibility = 'visible';
+                    main.style.paddingTop = '130px';
+                }
+                
+                // Force content visibility with a slight delay to allow layout to settle
+                setTimeout(() => {
+                    const sections = document.querySelectorAll('main section');
+                    sections.forEach(section => {
+                        section.style.display = 'block';
+                        section.style.visibility = 'visible';
+                    });
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                }, 300);
+            }
+        });
+    </script>
+
+    <!-- Updated mobile view fixes script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for mobile device
+            if (window.innerWidth <= 768) {
+                document.body.classList.add('mobile-device');
+            }
+            
+            // Check for iOS device
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            if (isIOS) {
+                document.body.classList.add('ios-device');
+            }
+            
+            // Listen for window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth <= 768) {
+                    document.body.classList.add('mobile-device');
+                } else {
+                    document.body.classList.remove('mobile-device');
+                }
+            });
+        });
+    </script>
+
+    <!-- Emergency fix script for mobile content visibility -->
+    <script>
+        // Run immediately without waiting for DOMContentLoaded
+        (function() {
+            // Force content visibility
+            document.documentElement.style.height = 'auto';
+            document.body.style.height = 'auto';
+            document.body.style.position = 'static';
+            document.body.style.overflow = 'auto';
+            
+            // Add a slight delay to ensure everything is rendered
+            setTimeout(function() {
+                // Force all sections to be visible
+                var sections = document.querySelectorAll('section');
+                for (var i = 0; i < sections.length; i++) {
+                    sections[i].style.display = 'block';
+                    sections[i].style.visibility = 'visible';
+                    sections[i].style.opacity = '1';
+                }
+                
+                // Ensure main content is visible
+                var main = document.querySelector('main');
+                if (main) {
+                    main.style.display = 'block';
+                    main.style.visibility = 'visible';
+                    main.style.paddingTop = '120px';
+                    main.style.overflow = 'auto';
+                }
+                
+                // Fix header
+                var header = document.querySelector('header');
+                if (header) {
+                    header.style.position = 'fixed';
+                    header.style.top = '0';
+                    header.style.left = '0';
+                    header.style.width = '100%';
+                    header.style.zIndex = '9999';
+                    header.style.display = 'flex';
+                }
+                
+                // Add class to body for CSS targeting
+                document.body.classList.add('emergency-fix');
+            }, 100);
+        })();
+    </script>
+</body>
+</html> 

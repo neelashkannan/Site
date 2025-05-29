@@ -25,6 +25,7 @@ footer {
 }
 
 /* DIRECT EXEMPTION for force-color elements - these must NEVER be grayscale */
+/*
 .force-color,
 .force-color *,
 .tab-image.force-color,
@@ -49,8 +50,10 @@ main > section.print-services .tab-content .tab-image.force-color {
     position: relative !important;
     z-index: 9999 !important;
 }
+*/
 
 /* EXEMPTION for tab images - these need to stay in color */
+/*
 .tab-image,
 .tab-image *,
 .color-wrapper,
@@ -64,6 +67,7 @@ main > section.print-services .tab-content .tab-image.force-color {
     z-index: 100 !important;
     position: relative !important;
 }
+*/
 
 /* Ensure body itself does not have the filter, to avoid double-filtering or unexpected inheritance */
 body {
